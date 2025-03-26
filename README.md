@@ -1,111 +1,81 @@
-# OWASP Password Strength Test
+# Password Shield - Chrome Extension
 
-A JavaScript module for testing password strength based on OWASP guidelines. This module provides comprehensive password validation and strength estimation. Available as both an npm package and a Chrome extension.
+A Chrome extension that helps users create and maintain strong passwords while following OWASP (Open Web Application Security Project) guidelines.
 
 ## Features
 
-- OWASP compliant password testing
-- Configurable requirements
-- Password strength estimation
-- Time-to-crack calculation
-- Common password checking
-- Username/email similarity check
-- Support for passphrases
-- Real-time password strength feedback
-- Visual strength meter
-- Detailed requirements checklist
+- **Site Trust Management**: 
+  - Prompts users when entering passwords on new websites
+  - Option to remember trusted sites to reduce prompts
+  - Manage trusted sites through a dedicated interface
+
+- **Password Strength Testing**:
+  - Real-time password strength analysis
+  - Based on OWASP security guidelines
+  - Checks for:
+    - Minimum length requirements
+    - Character complexity (uppercase, lowercase, numbers, special characters)
+    - Common patterns and words
+    - Username inclusion
+
+- **User-Friendly Interface**:
+  - Clean, modern design
+  - Simple one-click password testing
+  - Clear feedback on password strength
+  - Easy site trust management
 
 ## Installation
 
-### As an npm package:
-
-```bash
-npm install owasp-password-strength-test
-```
-
-### As a Chrome Extension:
-
 1. Download or clone this repository
-2. Open Chrome and go to `chrome://extensions/`
-3. Enable "Developer mode" in the top right
+2. Open Chrome and navigate to `chrome://extensions/`
+3. Enable "Developer mode" in the top right corner
 4. Click "Load unpacked" and select the extension directory
-5. The extension icon will appear in your Chrome toolbar
+5. The Password Shield icon should appear in your Chrome toolbar
 
 ## Usage
 
-### As an npm package:
+### Password Testing
+1. Click the Password Shield icon in your Chrome toolbar
+2. Enter a password in the input field
+3. View real-time feedback on your password's strength
+4. Check the detailed requirements list to improve your password
 
-```javascript
-const owasp = require('owasp-password-strength-test');
+### Site Trust Management
+1. When entering a password on a new site, a trust prompt will appear
+2. Choose to trust the site by checking "Don't ask again"
+3. Manage trusted sites through the extension's management page
+4. Remove sites from the trusted list as needed
 
-// Basic usage
-const result = owasp.test('MyPassword123!');
-console.log(result);
+## Security Features
 
-// Configure settings
-owasp.config({
-  minLength: 12,
-  maxLength: 128,
-  allowPassphrases: true,
-  username: 'user@example.com'
-});
+- No passwords are stored by the extension
+- Site trust information is stored locally
+- Follows OWASP password security guidelines
+- Real-time password strength analysis
+- Protection against common password vulnerabilities
 
-// Test with configuration
-const result2 = owasp.test('MyPassword123!');
-```
+## Development
 
-### As a Chrome Extension:
+The extension is built using:
+- HTML/CSS for the user interface
+- JavaScript for functionality
+- Chrome Extension APIs
+- OWASP password security guidelines
 
-1. Click the extension icon in your Chrome toolbar
-2. Enter the password you want to test
-3. Optionally enter a username/email to check for similarity
-4. View real-time feedback including:
-   - Password strength meter
-   - Requirements checklist
-   - Estimated time to crack
-   - Overall strength assessment
+## Contributing
 
-## Configuration Options
-
-| Option | Type | Default | Description |
-|--------|------|---------|-------------|
-| allowPassphrases | boolean | true | Allow passphrases as valid passwords |
-| maxLength | number | 128 | Maximum password length |
-| minLength | number | 10 | Minimum password length |
-| minPhraseLength | number | 20 | Minimum length for passphrases |
-| minOptionalTestsToPass | number | 4 | Minimum number of optional tests to pass |
-| commonPasswords | array | [...] | Array of common passwords to check against |
-| username | string | '' | Username/email for similarity check |
-
-## Test Results
-
-The `test()` function returns an object with the following properties:
-
-- `errors`: Array of all error messages
-- `failedTests`: Array of indices of failed tests
-- `passedTests`: Array of indices of passed tests
-- `requiredTestErrors`: Array of required test error messages
-- `optionalTestErrors`: Array of optional test error messages
-- `isPassphrase`: Boolean indicating if password is a passphrase
-- `strong`: Boolean indicating if password meets all requirements
-- `optionalTestsPassed`: Number of optional tests passed
-- `estimatedCrackTime`: String with estimated time to crack the password
-
-## Requirements
-
-- Minimum 10 characters
-- Maximum 128 characters
-- No sequences of 3 or more repeated characters
-- Not in common passwords list
-- Must not contain username/email (if configured)
-
-## Optional Requirements
-
-- At least one lowercase letter
-- At least one uppercase letter
-- At least one number
-- At least one special character
+1. Fork the repository
+2. Create a new branch for your feature
+3. Commit your changes
+4. Push to your branch
+5. Create a Pull Request
 
 ## License
 
-MIT License - see LICENSE file for details 
+This project is licensed under the GPL-3.0 License - see the [LICENSE](LICENSE) file for details.
+
+## Acknowledgments
+
+- Based on OWASP password security guidelines
+- Uses Chrome Extension APIs
+- Inspired by the need for better password security practices 
