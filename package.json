@@ -1,0 +1,26 @@
+{
+  "name": "owasp-password-strength-test",
+  "version": "1.0.0",
+  "description": "OWASP compliant password strength testing module",
+  "main": "dist/owasp-password-strength-test.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "password",
+    "security",
+    "owasp",
+    "strength",
+    "validation"
+  ],
+  "author": "",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yourusername/owasp-password-strength-test.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/owasp-password-strength-test/issues"
+  },
+  "homepage": "https://github.com/yourusername/owasp-password-strength-test#readme"
+} 

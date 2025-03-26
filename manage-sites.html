@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Password Shield - Manage Trusted Sites</title>
+  <style>
+    body {
+      width: 600px;
+      padding: 20px;
+      font-family: Arial, sans-serif;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .back-button {
+      padding: 8px 16px;
+      background: #1976d2;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .back-button:hover {
+      background: #1565c0;
+    }
+    .controls {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+    .search-box {
+      flex: 1;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+    .add-button {
+      padding: 8px 16px;
+      background: #2e7d32;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .add-button:hover {
+      background: #1b5e20;
+    }
+    .sort-select {
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+    .site-list {
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      max-height: 400px;
+      overflow-y: auto;
+    }
+    .site-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px;
+      border-bottom: 1px solid #eee;
+    }
+    .site-item:last-child {
+      border-bottom: none;
+    }
+    .remove-button {
+      padding: 4px 8px;
+      background: #d32f2f;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .remove-button:hover {
+      background: #b71c1c;
+    }
+    .empty-state {
+      text-align: center;
+      padding: 40px;
+      color: #666;
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+    .modal-content {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      width: 90%;
+      max-width: 400px;
+    }
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+    .close-button {
+      background: none;
+      border: none;
+      font-size: 20px;
+      cursor: pointer;
+      color: #666;
+    }
+    .modal-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    .modal-button {
+      padding: 8px 16px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .modal-button.cancel {
+      background: #f5f5f5;
+      color: #666;
+    }
+    .modal-button.confirm {
+      background: #d32f2f;
+      color: white;
+    }
+    .modal-button.confirm:hover {
+      background: #b71c1c;
+    }
+    .modal-button.save {
+      background: #2e7d32;
+      color: white;
+    }
+    .modal-button.save:hover {
+      background: #1b5e20;
+    }
+    .site-input {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h2>Manage Trusted Sites</h2>
+      <a href="popup.html" class="back-button">Back to Password Tester</a>
+    </div>
+    <div class="controls">
+      <input type="text" class="search-box" id="searchBox" placeholder="Search sites...">
+      <select class="sort-select" id="sortSelect">
+        <option value="name-asc">Name (A-Z)</option>
+        <option value="name-desc">Name (Z-A)</option>
+        <option value="date-asc">Date Added (Oldest)</option>
+        <option value="date-desc">Date Added (Newest)</option>
+      </select>
+      <button class="add-button" id="addButton">Add Site</button>
+    </div>
+    <div class="site-list" id="siteList">
+      <div class="empty-state">Loading trusted sites...</div>
+    </div>
+  </div>
+
+  <!-- Confirmation Modal -->
+  <div class="modal" id="confirmModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Remove Trusted Site</h3>
+        <button class="close-button" id="confirmModalClose">&times;</button>
+      </div>
+      <p>Are you sure you want to remove this site from trusted sites?</p>
+      <div class="modal-actions">
+        <button class="modal-button cancel" id="confirmModalCancel">Cancel</button>
+        <button class="modal-button confirm" id="confirmModalConfirm">Remove</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add Site Modal -->
+  <div class="modal" id="addModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Add Trusted Site</h3>
+        <button class="close-button" id="addModalClose">&times;</button>
+      </div>
+      <input type="text" class="site-input" id="newSiteInput" placeholder="Enter site domain (e.g., example.com)">
+      <div class="modal-actions">
+        <button class="modal-button cancel" id="addModalCancel">Cancel</button>
+        <button class="modal-button save" id="addModalSave">Add Site</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="manage-sites.js"></script>
+</body>
+</html> 

@@ -1,0 +1,96 @@
+.owasp-trust-prompt,
+.owasp-test-prompt {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999999;
+}
+
+.owasp-trust-content,
+.owasp-test-content {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  width: 90%;
+}
+
+.owasp-trust-content h3,
+.owasp-test-content h3 {
+  margin: 0 0 15px 0;
+  color: #1976d2;
+}
+
+.owasp-trust-actions,
+.owasp-test-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.owasp-trust-actions button,
+.owasp-test-actions button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s;
+}
+
+.owasp-trust-check,
+.owasp-test-yes {
+  background: #1976d2;
+  color: white;
+}
+
+.owasp-trust-check:hover,
+.owasp-test-yes:hover {
+  background: #1565c0;
+}
+
+.owasp-trust-skip,
+.owasp-test-no {
+  background: #f5f5f5;
+  color: #666;
+}
+
+.owasp-trust-skip:hover,
+.owasp-test-no:hover {
+  background: #e0e0e0;
+}
+
+.owasp-trust-remember {
+  margin-right: 5px;
+}
+
+.owasp-test-notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 999999;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  padding: 15px;
+  max-width: 300px;
+}
+
+.owasp-notification-content {
+  font-size: 14px;
+  line-height: 1.4;
+  color: #333;
+}
+
+.owasp-notification-content p {
+  margin: 0;
+} 

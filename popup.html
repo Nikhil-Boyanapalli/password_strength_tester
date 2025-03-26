@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Password Shield</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Password Shield</h1>
+      <a href="manage-sites.html" class="manage-link">Manage Trusted Sites</a>
+    </div>
+    
+    <div class="input-group">
+      <label for="username">Username/Email:</label>
+      <input type="text" id="username" placeholder="Enter username or email">
+    </div>
+
+    <div class="input-group">
+      <label for="password">Password:</label>
+      <input type="password" id="password" placeholder="Enter password">
+      <button id="test-button">Test Password</button>
+    </div>
+
+    <div class="strength-meter">
+      <div class="strength-label">Password Strength:</div>
+      <div id="strength-indicator" class="strength-indicator">Not Tested</div>
+    </div>
+
+    <div class="feedback">
+      <h3>Feedback:</h3>
+      <ul id="feedback-list"></ul>
+    </div>
+
+    <div class="requirements">
+      <h3>Password Requirements:</h3>
+      <ul>
+        <li>At least 8 characters long</li>
+        <li>Contains uppercase letters</li>
+        <li>Contains lowercase letters</li>
+        <li>Contains numbers</li>
+        <li>Contains special characters</li>
+        <li>No repeated characters</li>
+        <li>No common words</li>
+      </ul>
+    </div>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html> 
