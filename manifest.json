@@ -1,14 +1,17 @@
 {
   "manifest_version": 3,
-  "name": "Password Shield",
+  "name": "Privader Web Security",
   "version": "1.0",
-  "description": "A secure password strength tester following OWASP guidelines",
+  "description": "Comprehensive web security tool for password strength testing, privacy monitoring, and site safety analysis",
   "permissions": [
     "activeTab",
     "storage",
     "scripting",
     "notifications",
-    "windows"
+    "windows",
+    "webNavigation",
+    "webRequest",
+    "downloads"
   ],
   "host_permissions": [
     "<all_urls>"

@@ -1,16 +1,77 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Password Shield</title>
+  <title>Privader Web Security</title>
   <link rel="stylesheet" href="popup.css">
 </head>
 <body>
   <div class="container">
     <div class="header">
-      <h1>Password Shield</h1>
+      <h1>Privader Web Security</h1>
       <a href="manage-sites.html" class="manage-link">Manage Trusted Sites</a>
     </div>
-    
+
+    <div class="privacy-info">
+      <h3>Privacy Status:</h3>
+      <div id="privacy-status" class="privacy-status">
+        <div class="status-item">
+          <span class="status-label">Site Safety:</span>
+          <span id="site-safety" class="status-value">Checking...</span>
+        </div>
+        <div class="status-item">
+          <span class="status-label">Data Collection:</span>
+          <span id="data-collection" class="status-value">Checking...</span>
+        </div>
+      </div>
+      
+      <div class="policy-analysis">
+        <button id="analyze-policy" class="analyze-button">Analyze Privacy Policy</button>
+        <div id="policy-results" class="policy-results" style="display: none;">
+          <h4>Policy Analysis Results:</h4>
+          <div class="analysis-summary">
+            <div class="risk-level">
+              <span class="risk-label">Overall Risk Level:</span>
+              <span id="risk-indicator" class="risk-value">Not analyzed</span>
+            </div>
+            <div class="stats">
+              <div class="stat-item">
+                <span class="stat-label">High Risk Terms:</span>
+                <span id="high-risk-count">0</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label">Medium Risk Terms:</span>
+                <span id="medium-risk-count">0</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label">Low Risk Terms:</span>
+                <span id="low-risk-count">0</span>
+              </div>
+            </div>
+          </div>
+          <div id="concerns-list" class="concerns-list">
+            <h5>Detected Concerns:</h5>
+            <ul id="policy-concerns"></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="warnings-section">
+      <h3>Recent Privacy Warnings</h3>
+      <div class="warnings-controls">
+        <select id="warning-filter">
+          <option value="all">All Warnings</option>
+          <option value="data_collection">Data Collection</option>
+          <option value="privacy_policy">Privacy Policy</option>
+          <option value="privacy_detail">Detailed Concerns</option>
+        </select>
+        <button id="clear-warnings">Clear All</button>
+      </div>
+      <div id="warnings-list" class="warnings-list">
+        <div class="empty-state">No warnings to display</div>
+      </div>
+    </div>
+
     <div class="input-group">
       <label for="username">Username/Email:</label>
       <input type="text" id="username" placeholder="Enter username or email">
